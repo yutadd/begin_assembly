@@ -11,7 +11,7 @@ description = "build from obj"
 script=['''
 #!/usr/bin/env bash
 gcc -o nope64 nope64.s
-gcc -o nope86 nope86.s
+gcc -o nope86 nope86.s -m32
 ''']
 dependencies=["compile"]
 [tasks.install]

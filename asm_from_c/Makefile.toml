@@ -1,0 +1,19 @@
+[tasks.run]
+description="execute executable file"
+script='''
+#!/usr/bin/env bash
+./main
+'''
+dependencies=["build"]
+
+[tasks.generate]
+description="generate s file"
+script='''
+#!/usr/bin/env bash
+gcc -O3 -S -fno-asynchronous-unwind-tables main.c
+'''
+
+[tasks.build]
+desktiption="build executable file from c file"
+command="gcc"
+args=["-o","main","main.c"]
