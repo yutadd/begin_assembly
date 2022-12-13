@@ -1,0 +1,27 @@
+[tasks.clean]
+description = "clean"
+command = "rm"
+args=["-f","nope.o","nope"]
+[tasks.compile]
+description = "compile from assem"
+command = "gcc"
+args=["-c","nope64.s" ,"nope86.s"]
+[tasks.link]
+description = "build from obj"
+script=['''
+#!/usr/bin/env bash
+gcc -o nope64 nope64.s
+gcc -o nope86 nope86.s
+''']
+dependencies=["compile"]
+[tasks.install]
+description = "install assem"
+dependencies=["clean","compile","link"]
+[tasks.run]
+description = "build and run"
+script=['''
+#!/usr/bin/env bash
+./nope64
+./nope86
+''']
+dependencies=["install"]
