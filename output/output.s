@@ -1,10 +1,9 @@
-.globl main
-.text
-main:
+.globl _start
+_start:
         mov     $1, %rax        # syscall(write)
         mov     $1, %rdi        # to stdout
         mov     $message, %rsi  # msg addr
-        mov     $13, %rdx       # regist length
+        mov     $len, %rdx       # regist length
         syscall                 # execute   write
 
         # exit(0)
