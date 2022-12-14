@@ -1,12 +1,19 @@
 	.file	"main.c"
 	.text
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC0:
+	.string	"hello, world\n"
 	.section	.text.startup,"ax",@progbits
 	.p2align 4
 	.globl	main
 	.type	main, @function
 main:
 	endbr64
+	subq	$8, %rsp
+	leaq	.LC0(%rip), %rdi
+	call	puts@PLT
 	xorl	%eax, %eax
+	addq	$8, %rsp
 	ret
 	.size	main, .-main
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"

@@ -1,0 +1,23 @@
+[tasks.clean]
+description = "clean"
+command = "rm"
+args=["-f","output.o","output"]
+[tasks.compile]
+description = "compile from assem"
+command = "gcc"
+args=["-c","output.s"]
+[tasks.link]
+description = "build from obj"
+command = "ld"
+args=["-o","output","output.o"]
+dependencies=["compile"]
+[tasks.install]
+description = "install assem"
+dependencies=["clean","compile","link"]
+[tasks.run]
+description = "build and run"
+script=['''
+#!/usr/bin/env bash
+./output
+''']
+dependencies=["install"]
