@@ -1,6 +1,6 @@
-        .global _start
-        .text
-_start:
+.globl main
+.text
+main:
         mov     $1, %rax        # syscall(write)
         mov     $1, %rdi        # to stdout
         mov     $message, %rsi  # msg addr

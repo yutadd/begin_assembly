@@ -1,0 +1,11 @@
+[tasks.build]
+description="build it"
+command="gcc"
+args=["-o","output","output.s","-m64","-g"]
+[tasks.run]
+description="run it"
+script=['''
+#!/usr/bin/env bash
+./output
+''']
+dependencies=["build"]
