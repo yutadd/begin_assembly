@@ -1,0 +1,15 @@
+[tasks.build]
+description="build loop.s"
+command="gcc"
+args=["-O0","-o","loop","loop.s"]
+[tasks.run]
+description="loop about 500000 times"
+script=['''
+#!/usr/bin/env bash
+DATETIME1=`date +%Ss%Nns`
+./loop
+DATETIME2=`date +%Ss%Nns`
+echo started time : $DATETIME1
+echo finished time : $DATETIME2
+''']
+dependencies=["build"]
