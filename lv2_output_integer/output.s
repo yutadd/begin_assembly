@@ -1,7 +1,7 @@
 .text
 .global main
 main:
-  push %rbx
+  push %rbx     # printfを呼び出すため、rbxを保存しておくらしい
   lea  format(%rip), %rdi
   mov  $1234, %rsi           # Writing to ESI zero extends to RSI.
   xor %rax, %rax          # Zeroing EAX is efficient way to clear AL.

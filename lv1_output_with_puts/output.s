@@ -1,10 +1,15 @@
-.globl _start
-_start:
-        
+.globl main
+main: # _startだとリンカエラーになる。
+        push %rbp
 
+        mov %rsp,%rbp
+        lea message(%rip),%rax
+        mov %rax,%rdi
+        call puts
+
+        pop %rbp
         # exit(0)
-        mov     $0x3c, %rax               # set operation code 0x3c
-        xor     %rdi, %rdi              # set 0 to rdi
-        syscall                         # execute exit
-
+        mov     $0x3c, %rax
+        xor     %rdi, %rdi
+        syscall
 message:    .asciz "hello"

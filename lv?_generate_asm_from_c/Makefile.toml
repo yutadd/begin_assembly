@@ -5,12 +5,11 @@ script='''
 ./main
 '''
 dependencies=["build"]
-
 [tasks.generate]
 description="generate s file"
 script='''
 #!/usr/bin/env bash
-gcc -O3 -S -fno-asynchronous-unwind-tables main.c
+gcc -O0 -S -fno-stack-protector -fno-asynchronous-unwind-tables main.c
 '''
 
 [tasks.build]
