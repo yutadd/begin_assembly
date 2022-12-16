@@ -7,8 +7,6 @@ plus: # rsi + rdi → rax
     add     %rsi,%rax # rax=rax+2
     pop     %rbp
     ret
-print:
-
 main:
     push    %rbp
     mov     %rsp,%rbp
