@@ -1,8 +1,24 @@
 	.file	"main.c"
 	.text
+	.globl	plus
+	.type	plus, @function
+plus:
+	endbr64
+	pushq	%rbp
+	movq	%rsp, %rbp
+	movl	%edi, -20(%rbp)
+	movl	%esi, -24(%rbp)
+	movl	-20(%rbp), %edx
+	movl	-24(%rbp), %eax
+	addl	%edx, %eax
+	movl	%eax, -4(%rbp)
+	movl	-4(%rbp), %eax
+	popq	%rbp
+	ret
+	.size	plus, .-plus
 	.section	.rodata
 .LC0:
-	.string	"HW"
+	.string	"%d\n"
 	.text
 	.globl	main
 	.type	main, @function
@@ -11,16 +27,16 @@ main:
 	pushq	%rbp
 	movq	%rsp, %rbp
 	subq	$16, %rsp
-	movl	$0, -4(%rbp)
-	jmp	.L2
-.L3:
+	movl	$2, %esi
+	movl	$5, %edi
+	call	plus
+	movl	%eax, -4(%rbp)
+	movl	-4(%rbp), %eax
+	movl	%eax, %esi
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdi
-	call	puts@PLT
-	addl	$1, -4(%rbp)
-.L2:
-	cmpl	$9, -4(%rbp)
-	jle	.L3
+	movl	$0, %eax
+	call	printf@PLT
 	movl	$0, %eax
 	leave
 	ret

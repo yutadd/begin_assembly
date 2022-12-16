@@ -1,7 +1,10 @@
 #include <stdio.h>
+int plus(int a,int b){
+    int c=a+b;
+    return c;
+}
 int main() {
-    for(int i=0;i<10;i++){
-        puts("HW");
-    }
+    int d=plus(5,2);
+    printf("%d\n",d);
     return 0;
 }
