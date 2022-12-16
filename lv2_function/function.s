@@ -5,11 +5,10 @@ plus:
     mov     %rsp,%rbp
     mov     %rdi,-20(%rbp)
     mov     %rsi,-24(%rbp)
-    mov     -20(%rbp),%edx
+    mov     -24(%rbp),%rdx
     mov     -24(%rbp),%rax
     add     %rdx,%rax
     mov     %rax,-4(%rbp)
-    mov     -4(%rbp),%rax
     pop     %rbp
     ret
 print:
@@ -22,7 +21,6 @@ main:
     mov     $5,%rdi # 引数1
     call    plus
     mov     %rax,-4(%rbp) # 結果の取得 error segment fault
-    mov     -4(%rbp),%rax
     mov     %rax,%rsi
     lea     format(%rip),%rax
     mov     %rax,%rdi
