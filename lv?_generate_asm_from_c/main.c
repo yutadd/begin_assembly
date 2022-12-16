@@ -1,10 +1,8 @@
 #include <stdio.h>
 int plus(int a,int b){
-    int c=a+b;
-    return c;
+    return a+b;
 }
 int main() {
-    int d=plus(5,2);
-    printf("%d\n",d);
+    printf("%d\n",plus(5,2));
     return 0;
 }

@@ -6,13 +6,11 @@ plus:
 	endbr64
 	pushq	%rbp
 	movq	%rsp, %rbp
-	movl	%edi, -20(%rbp)
-	movl	%esi, -24(%rbp)
-	movl	-20(%rbp), %edx
-	movl	-24(%rbp), %eax
+	movl	%edi, -4(%rbp)
+	movl	%esi, -8(%rbp)
+	movl	-4(%rbp), %edx
+	movl	-8(%rbp), %eax
 	addl	%edx, %eax
-	movl	%eax, -4(%rbp)
-	movl	-4(%rbp), %eax
 	popq	%rbp
 	ret
 	.size	plus, .-plus
@@ -26,19 +24,16 @@ main:
 	endbr64
 	pushq	%rbp
 	movq	%rsp, %rbp
-	subq	$16, %rsp
 	movl	$2, %esi
 	movl	$5, %edi
 	call	plus
-	movl	%eax, -4(%rbp)
-	movl	-4(%rbp), %eax
 	movl	%eax, %esi
 	leaq	.LC0(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
 	movl	$0, %eax
-	leave
+	popq	%rbp
 	ret
 	.size	main, .-main
 	.ident	"GCC: (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0"

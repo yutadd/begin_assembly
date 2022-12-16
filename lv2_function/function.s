@@ -1,14 +1,10 @@
 .text
 .globl main
-plus:
+plus: # rsi + rdi → rax
     push    %rbp
     mov     %rsp,%rbp
-    mov     %rdi,-20(%rbp)
-    mov     %rsi,-24(%rbp)
-    mov     -24(%rbp),%rdx
-    mov     -24(%rbp),%rax
-    add     %rdx,%rax
-    mov     %rax,-4(%rbp)
+    mov     %rdi,%rax # rax=5
+    add     %rsi,%rax # rax=rax+2
     pop     %rbp
     ret
 print:
@@ -16,17 +12,16 @@ print:
 main:
     push    %rbp
     mov     %rsp,%rbp
-    sub     $16,%rsp
+    # call plus
     mov     $2,%rsi # 引数2
     mov     $5,%rdi # 引数1
     call    plus
-    mov     %rax,-4(%rbp) # 結果の取得 error segment fault
-    mov     %rax,%rsi
-    lea     format(%rip),%rax
-    mov     %rax,%rdi
+    # call printf
+    mov     %rax,%rsi # set arg
+    lea     format(%rip),%rax # load format
+    mov     %rax,%rdi # setformat
     mov     $0,%rax
     call    printf
-    mov     $0,%rax
     # exit(0)
     mov     $0x3c, %rax
     xor     %rdi, %rdi
